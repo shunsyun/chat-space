@@ -22,7 +22,7 @@ Things you may want to cover:
 |user_id  |integer |null: false,foreign_key: true |
 
 ### association
-- has_many :groups through: members 
+- has_many :groups through: :members 
 - has_many :messages
 - has_many :members
 
@@ -48,7 +48,7 @@ Things you may want to cover:
 ### association
 - has_many :members
 - has_many :messages
-- has_many :users through: members
+- has_many :users through: :members
 
 ## membersテーブル
 
