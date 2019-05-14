@@ -16,21 +16,17 @@ Things you may want to cover:
 |column|type|options|
 |------|----|-------|
 |name     |string  |null: false,unique: true |
-|email    |string  |null: false,unique: true |
-|password |string  |null: false,unique: true |
-|group_id |integer |null: false,foreign_key: true |
-|user_id  |integer |null: false,foreign_key: true |
 
 ### association
-- has_many :groups through: :members 
+- has_many :groups, through: :members 
 - has_many :messages
 - has_many :members
 
 ## messages table
 |column|type|options|
 |------|----|-------|
-|body    |text   |null: false |
-|image   |string |null: false |
+|body    |text   |
+|image   |string |
 |group_id|integer|null: false,foreign_key: true |
 |user_id |integer|null: false,foreign_key: true |
 
@@ -41,17 +37,14 @@ Things you may want to cover:
 ## groups table
 |column|type|options|
 |------|----|-------|
-|group     |string |null: false |
-|user_id   |integer|null: false,foreign_key: true |
-|message_id|integer|null: false,foreign_key: true |
+|name     |string |null: false |
 
 ### association
 - has_many :members
 - has_many :messages
-- has_many :users through: :members
+- has_many :users, through: :members
 
 ## membersテーブル
-
 |Column|Type|Options|
 |------|----|-------|
 |user_id|integer|null: false, foreign_key: true|
