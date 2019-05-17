@@ -1,0 +1,14 @@
+@import "./variable";
+*{
+  box-sizing: border-box;
+}
+.flash-box{
+  width:100vw;
+  height:20px;
+  background-color:$lightblue;
+  &__flash-message{
+    text-align:center;
+    color:$whitechar;
+  }
+}
+
