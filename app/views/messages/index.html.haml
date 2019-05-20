@@ -1,16 +1,22 @@
 .wrapper
   .group-side
     .group-header
-      %p.group-header__user-name user-name
+      %p.group-header__user-name 
+        =current_user.name
       %ul.group-header__user-menu
         %li.user-menu__edit
-          = link_to root_path do
+          = link_to new_group_path do
             %i.far.fa-edit
         %li.user-menu__cog  
-          = link_to root_path do
+          = link_to edit_user_path(current_user) do
             %i.fas.fa-cog
     .groups
-      = render partial: 'messages/group'
+      .group
+        %p.group__group-name group-name
+        %p.group__message-top message
+      .group
+        %p.group__group-name group-name
+        %p.group__message-top message
   .chat-side
     .message-header
       .current-group
@@ -32,4 +38,3 @@
               %i.far.fa-image
                 %input.image-label{type:"file", id: "upload-icon"}
         %input.submit-btn{type: "submit", value: "send"}
-        
