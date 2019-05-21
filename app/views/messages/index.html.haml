@@ -1,22 +1,23 @@
 .wrapper
-  .group-side
-    .group-header
-      %p.group-header__user-name 
-        =current_user.name
-      %ul.group-header__user-menu
-        %li.user-menu__edit
-          = link_to new_group_path do
-            %i.far.fa-edit
-        %li.user-menu__cog  
-          = link_to edit_user_path(current_user) do
-            %i.fas.fa-cog
-    .groups
-      .group
-        %p.group__group-name group-name
-        %p.group__message-top message
-      .group
-        %p.group__group-name group-name
-        %p.group__message-top message
+  = render partial: 'devise/shared/side_bar'
+  -# .group-side
+  -#   .group-header
+  -#     %p.group-header__user-name 
+  -#       =current_user.name
+  -#     %ul.group-header__user-menu
+  -#       %li.user-menu__edit
+  -#         = link_to new_group_path do
+  -#           %i.far.fa-edit
+  -#       %li.user-menu__cog  
+  -#         = link_to edit_user_path(current_user) do
+  -#           %i.fas.fa-cog
+  -#   .groups
+      -# .group
+      -#   %p.group__group-name group-name
+      -#   %p.group__message-top message
+      -# .group
+      -#   %p.group__group-name group-name
+      -#   %p.group__message-top message
   .chat-side
     .message-header
       .current-group
@@ -29,12 +30,21 @@
         .message-header__edit-btn
           %p Edit
     .messages
-      = render partial: 'messages/message'
+      = render partial: 'message', collection: @messages
     .form
-      %form.new-message{action: 'activation', method: 'post' }
-        .input-box
-          %input.input-box__message{placeholder: "type a message",type: "text",name: "message"}  
-            %label.image-label{for: "upload-icon"}
-              %i.far.fa-image
-                %input.image-label{type:"file", id: "upload-icon"}
-        %input.submit-btn{type: "submit", value: "send"}
+      = form_for [@group, @message] do |f|
+        = f.text_field :content, class: 'form__message', placeholder: 'type a message'
+        .form__mask
+          = f.label :image, class: 'form__mask__image' do
+            = fa_icon 'picture-o', class: 'icon'
+            = f.file_field :image, class: 'hidden'
+        = f.submit 'Send', class: 'form__submit'
+    -#  以下、自分のhaml
+    -# .form
+    -#   %form.new-message{action: 'activation', method: 'post' }
+    -#     .input-box
+    -#       %input.input-box__message{placeholder: "type a message",type: "text",name: "message"}  
+    -#         %label.image-label{for: "upload-icon"}
+    -#           %i.far.fa-image
+    -#             %input.image-label{type:"file", id: "upload-icon"}
+    -#     %input.submit-btn{type: "submit", value: "send"}
