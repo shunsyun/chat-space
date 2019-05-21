@@ -21,12 +21,14 @@
   .chat-side
     .message-header
       .current-group
-        %h2.current-group__group-name group-name
+        %h2.current-group__group-name
+          = @group.name
         %ul.current-group__members
           %li Member:
-          %li.members__name name1
-          %li.members__name name2
-      = link_to root_path do
+          %li.members__name
+            - @group.users.each do |user| 
+              = user.name
+      = link_to edit_group_path(@group) do
         .message-header__edit-btn
           %p Edit
     .messages
