@@ -4,7 +4,7 @@ Rails.application.routes.draw do
  root "groups#index" 
  resources :users, only: [:index, :edit, :update] do
   collection do
-    get 'ajax_user_list'
+    get 'search'
   end
  end
  resources :groups, only: [:index, :new, :create, :edit, :update] do

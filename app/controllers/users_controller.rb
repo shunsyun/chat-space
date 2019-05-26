@@ -3,7 +3,7 @@ class UsersController < ApplicationController
   def index
   end
 
-  def ajax_user_list
+  def search
     @users = User.where('name LIKE(?)',"%#{params[:name]}%").where.not(id: current_user.id)
     respond_to do |format|
       format.html

@@ -8,10 +8,10 @@ $(function(){
                </div>`
     searchUser.append(html);
   }
-  function appendNoUser(user){
+  function appendNoUser(){
     var html =`<div class="chat-group-user clearfix">
                  <div class='chat-group-form__field--right'>
-                   <p class="chat-group-user__name">${user}</p>
+                   <p class="chat-group-user__name">一致するユーザーが見つかりません</p>
                  </div>
                </div>`
     searchUser.append(html);
@@ -27,10 +27,9 @@ $(function(){
   }
   $('#user-search-field').on('keyup', function(e){
     var input = $("#user-search-field").val();
-    console.log(input)
     $.ajax({
       type: 'GET',
-      url: '/users/ajax_user_list',
+      url: '/users/search',
       data: { name: input},
       dataType: 'json',
     })
@@ -38,10 +37,10 @@ $(function(){
       $('.user-search-result').empty();
       if (users.length !== 0 && input.length !== 0) {
       users.forEach(function(user){
-      appendUser(user);
+        appendUser(user);
       })
-    }else {
-      appendNoUser("一致するユーザーが見つかりません");
+    } else {
+      appendNoUser();
       }
     })
     .fail(function() {
