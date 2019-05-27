@@ -48,8 +48,8 @@ $(function(){
     })
   })
    $(document).on('click', '.user-search-add',function(){
-      var id = $(this).attr('data-user-id')
-      var user = $(this).attr('data-user-name')
+      var id = $(this).data('user-id')
+      var user = $(this).data('user-name')
       var html = addUserList(id,user);
       $(".chat-group-users").append(html)
       $(this).parent().remove();
