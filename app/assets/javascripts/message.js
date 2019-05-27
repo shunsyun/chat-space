@@ -38,7 +38,6 @@ $(function(){
   //  以下　自動更新
   var reloadMessages = function() {
     last_message_id = $('.message:last').data('id');
-    console.log(last_message_id)
     $.ajax({
       url: 'api/messages',
       type: 'get',
